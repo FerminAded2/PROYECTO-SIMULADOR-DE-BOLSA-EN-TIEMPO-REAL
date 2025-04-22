@@ -159,8 +159,10 @@ def documento():
                     opciones ---------> con lo que le  damos formato, con indet le damos los saltos de linea y
                                         un formato mas prolijo 
 
+   SUGERENCIA: HACER CONSULTAS Y E IMPLEMENTARLAS  
+
     """ 
-    pass
+    pass 
                     
 #Codigo_principal
 
