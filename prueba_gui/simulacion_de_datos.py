@@ -11,6 +11,9 @@ def pide_datos_del_usario():
     nombre=input("Escriba su nombre: ")
     edad=int(input("Ingrese su edad: ")) 
 
+ #Podemos poner que la persona solo pueda ingresar un dato alfabetico 
+    #Y hasta que eso no pase, que se siga pidiendo el dato 
+
 #----------------------------------------------------------             
 
     return nombre,edad
