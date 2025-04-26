@@ -1,6 +1,7 @@
 
 import tkinter as tk  # -- Lo renombramos asi porque es el consejo que se nos da el la pagina oficial
 from PIL import Image, ImageTk# baiscamente laburamos con imagnes. Voy a ampliarlo en el docmuento 
+import os # -- > Sirve para que se cargue la imagen correctamente
 
 def datos_del_tiempo ():
     
@@ -239,9 +240,11 @@ def main ():
     label_cronometro = tk.Label(ventana, text="Tiempo Restante: 10:00", font=("Arial", 16), bg="#dceefb")
     label_cronometro.grid(row=0, column=1)
 
-    imagen_original=Image.open("reloj_de_arena.png")
+    ruta_absoluta = os.path.join(os.path.dirname(os.path.abspath(__file__)), "reloj_de_arena.png")
+    imagen_original=Image.open(ruta_absoluta)
     imagen_reducida=imagen_original.resize((48,60))
     imagen_tk = ImageTk.PhotoImage(imagen_reducida)
+    
 
 
     label_imagen=tk.Label(ventana, image=imagen_tk, bg="#dceefb")
