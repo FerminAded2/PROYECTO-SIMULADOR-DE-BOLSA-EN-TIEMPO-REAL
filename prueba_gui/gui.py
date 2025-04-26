@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-
+import funciones_de_la_interfaz as fi
 ventana = tk.Tk()
 ventana.title("Simulador de Bolsa en Tiempo Real")
 
@@ -23,7 +23,9 @@ entry_cantidad.grid(row=1, column=2)
 
 button_comprar = tk.Button(ventana, text="Comprar")
 button_comprar.grid(row=1, column=3)
-
+boton_iniciar_cronometro = tk.Button(ventana, text="Iniciar Cronómetro",
+command=lambda: fi.iniciamos_cronometro(label_cronometro, fi.datos_del_tiempo()))
+boton_iniciar_cronometro.grid(row=0, column=4, padx=10)
 button_vender = tk.Button(ventana, text="Vender")
 button_vender.grid(row=1, column=4)
 
