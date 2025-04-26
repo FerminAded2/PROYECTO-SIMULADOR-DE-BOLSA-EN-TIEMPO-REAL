@@ -261,7 +261,8 @@ def main ():
 
     # Iniciamos la ventana para que se mantenga abierta
     ventana.mainloop()
+    if __name__ == "__main__":
+        # Si el script se ejecuta directamente, llamamos a la función main
 
-
-main ()
+        main ()
 
