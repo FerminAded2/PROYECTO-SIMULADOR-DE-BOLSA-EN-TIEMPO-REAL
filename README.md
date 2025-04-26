@@ -17,9 +17,8 @@ Las funcionalidades del sistema serán vender y comprar acciones con dinero fict
 # 40%  
 - Redaccion del SRS del proyecto.  
 - Creación del repositorio en GitHub y redaccion del archivo README.md.  
-- Implementacion de una interfaz gráfica básica usando Tkinter.  
-- Integracion con Alpha Vantage usando la libreria requests.  
-- Visualizacion de nombre y precio de acciones en tiempo real.  
+- Implementacion de una interfaz gráfica básica usando Tkinter.
+- Simulador de datos (simula a la API).  
 - Uso de archivo JSON para guardar los datos.
 
 # 80%  
@@ -27,7 +26,8 @@ Las funcionalidades del sistema serán vender y comprar acciones con dinero fict
 - Registro del portafolio del usuario mediante diccionarios de Python.  
 - Implementacion de un DAG de Apache Airflow que actualiza precios 5 veces por minuto consultando la API con requests y guarda los datos en JSON.  
 - Implementacion de un cronometro de 10 minutos para cada partida usando la libreria time.
-
+- Integracion con Alpha Vantage usando la libreria requests.
+  
 # 100%  
 - Desarrollo de la pantalla final donde se muestra ganancia o perdida.  
 - Calculo final sumando el dinero disponible y el valor actual del portafolio.  
