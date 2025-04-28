@@ -170,7 +170,7 @@ def main ():
 
     nombre,edad=pide_datos_del_usario()
 
-    print(f"El nombre del usurio es: {nombre} y su edad: {edad} años")
+    print(f"El nombre del usuario es: {nombre} y su edad: {edad} años")
 
     matriz=crea_matriz()
     
