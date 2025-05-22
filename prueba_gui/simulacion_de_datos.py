@@ -6,18 +6,29 @@ import os # Para ver el contenido del json
 #--------------------------SECCION_00----------------------
 def pide_datos_del_usario():
 
+
     "Enpaquetado y desenpaquetado de datos de la llamda a la funcion"
+   
+    while True:
 
-    nombre=input("Escriba su nombre: ")
-    edad=int(input("Ingrese su edad: ")) 
+        nombre=input("Escriba su nombre: ")
+        try:
+            edad=int(input("Ingrese su edad: ")) 
+            break
+        
+        except ValueError:
+            print ("Por favor, ingrese un numero")
 
- #Podemos poner que la persona solo pueda ingresar un dato alfabetico 
+    #Usamos el pricipio de “Es mejor pedir perdón que pedir permiso”
+       
+    #Podemos poner que la persona solo pueda ingresar un dato alfabetico 
     #Y hasta que eso no pase, que se siga pidiendo el dato 
 
-#----------------------------------------------------------             
-
     return nombre,edad
-             
+ 
+
+
+#----------------------------------------------------------                   
                
 
 def crea_matriz():

@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import funciones_de_la_interfaz as fi
+
 ventana = tk.Tk()
 ventana.title("Simulador de Bolsa en Tiempo Real")
 
