@@ -204,12 +204,7 @@ def documento ():
 
        FUNCION LAMBDA --- > lamda <parámetro>: <expresión que devuelve>
                            
-                            ej : lambda x: x**2 ----> te da todo los x al cudrado 
-
-        
-
-
-                                                                                        
+                            ej : lambda x: x**2 ----> te da todo los x al cudrado                                                                                         
     """
 
     # Luego podemos analizar si armar un .py con documentacion para que quede mas prolijo
@@ -245,7 +240,6 @@ def main ():
     imagen_reducida=imagen_original.resize((48,60))
     imagen_tk = ImageTk.PhotoImage(imagen_reducida)
     
-
 
     label_imagen=tk.Label(ventana, image=imagen_tk, bg="#dceefb")
     label_imagen.image=imagen_tk  # evitar que se libere la imagen de memoria

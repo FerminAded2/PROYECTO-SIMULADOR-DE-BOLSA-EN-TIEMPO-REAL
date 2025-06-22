@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 import funciones_de_la_interfaz as fi
 
-ventana = tk.Tk()
+ventana = tk.Tk() #Ventana principal
 ventana.title("Simulador de Bolsa en Tiempo Real")
 
 label_cronometro = tk.Label(ventana, text="Tiempo Restante: 10:00", font=("Arial", 16))

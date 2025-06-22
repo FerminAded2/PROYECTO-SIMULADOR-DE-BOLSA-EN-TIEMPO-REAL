@@ -4,17 +4,19 @@ import os # Para ver el contenido del json
           # solo para este caso 
 
 #--------------------------SECCION_00----------------------
-def pide_datos_del_usario():
+def pide_datos_del_usuario():
 
 
     "Enpaquetado y desenpaquetado de datos de la llamda a la funcion"
-   
-    while True:
 
+    condicion=False
+
+    while not condicion:
+        
         nombre=input("Escriba su nombre: ")
         try:
             edad=int(input("Ingrese su edad: ")) 
-            break
+            condicion=True
         
         except ValueError:
             print ("Por favor, ingrese un numero")
@@ -24,10 +26,9 @@ def pide_datos_del_usario():
     #Podemos poner que la persona solo pueda ingresar un dato alfabetico 
     #Y hasta que eso no pase, que se siga pidiendo el dato 
 
-    return nombre,edad
+    return nombre,edad 
+    # Empaquetado
  
-
-
 #----------------------------------------------------------                   
                
 
@@ -90,10 +91,13 @@ def armamos_dic(tupla):
 
     #---------------explicacion_en_documento----------------------------------
     #---------------  JSON ---------------------------------------------------
+    ruta_json = os.path.join(os.path.dirname(__file__), "Promedio_de_acciones.json")
 
-    with open ("Promedio_de_acciones","w") as archivo: #write (escribir) como no existe,hay que escribir el archivo
-        json.dump(diccionario,archivo,indent=4)
-        os.startfile("Promedio_de_acciones")
+    with open (ruta_json,"w") as archivo: #write (escribir) como no existe,hay que escribir el archivo
+        
+        json.dump(diccionario, archivo, indent=4)
+        
+    os.startfile(ruta_json)
 
     return diccionario
 
@@ -179,8 +183,8 @@ def documento():
 
 def main ():
 
-    nombre,edad=pide_datos_del_usario()
-
+    nombre,edad=pide_datos_del_usuario()
+    #En esta funcion hacemos un desempaquetado
     print(f"El nombre del usurio es: {nombre} y su edad: {edad} años")
 
     matriz=crea_matriz()
@@ -195,10 +199,11 @@ def main ():
 
     covertimos_tupla_a_diccionario=armamos_dic(convertido_a_tupla)
 
-
-
     impresion(matriz_con_datos_01,resultado)
 
     documento()
+    # con help(documento) lo podemos ver por terminal
 
-main()
+if __name__=="__main__":
+        
+    main()
