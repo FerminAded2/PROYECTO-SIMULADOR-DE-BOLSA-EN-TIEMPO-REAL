@@ -200,8 +200,10 @@ def documento():
 def main ():
 
     nombre,edad=pide_datos_del_usuario()
+    
     #En esta funcion hacemos un desempaquetado
     print(f"El nombre del usurio es: {nombre} y su edad: {edad} años")
+
 
     matriz=crea_matriz()
     
@@ -223,3 +225,4 @@ def main ():
 if __name__=="__main__":
         
     main()
+
