@@ -2,6 +2,7 @@ import random
 import json
 import os # Para ver el contenido del json 
           # solo para este caso 
+import time
 
 #--------------------------SECCION_00----------------------
 def pide_datos_del_usuario():
@@ -117,7 +118,83 @@ def armamos_dic(tupla):
 
     return diccionario
 
+#----------------------------- Seccion terminal --------------------------------------------------------------
 
+def mostrar_portafolio(saldo, portafolio):
+    print()
+    print("----- TU PORTAFOLIO -----")
+    print("Saldo disponible:", saldo)
+    for empresa, dinero in portafolio.items():
+        print(empresa, ": $", dinero)
+    print("-------------------------")
+
+def invertir(empresa, monto, saldo, portafolio):
+    if monto <= saldo:
+        saldo -= monto
+        portafolio[empresa] += monto
+        print(f"Invertiste ${monto} en {empresa}")
+    else:
+        print("No tenes saldo suficiente")
+    return saldo
+
+def retirar(empresa, monto, saldo, portafolio):
+    if portafolio[empresa] >= monto:
+        saldo += monto
+        portafolio[empresa] -= monto
+        print(f"Retiraste ${monto} de {empresa}")
+    else:
+        print("No tenes ese monto invertido en", empresa)
+    return saldo
+
+
+def interaccion_con_terminal(empresas):
+    saldo = 10000
+    portafolio = {empresa: 0 for empresa in empresas}
+    inicio = time.time()
+    condicion = False
+
+    while not condicion:
+        if time.time() - inicio >= 600:
+            print("Tiempo agotado")
+            condicion = True
+        else:
+            mostrar_portafolio(saldo, portafolio)
+            print()
+            for i, empresa in enumerate(empresas):
+                print(i, "-", empresa)
+            entrada = input("Elegir empresa por numero o -1 para salir: ")
+
+            if entrada == "-1":
+                print("Fin del programa")
+                condicion = True
+            else:
+                try:
+                    indice = int(entrada)
+                    if indice < 0 or indice >= len(empresas):
+                        print("Empresa invalida intenta de nuevo")
+                    else:
+                        empresa = empresas[indice]
+                        accion = input("Invertir o retirar i/r: ").lower()
+                        try:
+                            monto = int(input("Cuanto dinero: "))
+                            if accion == "i":
+                                saldo = invertir(empresa, monto, saldo, portafolio)
+                            elif accion == "r":
+                                saldo = retirar(empresa, monto, saldo, portafolio)
+                            else:
+                                print("Opcion no valida")
+                        except ValueError:
+                            print("Monto invalido")
+                except ValueError:
+                    print("Entrada invalida")
+
+        if saldo == 0:
+            print("Ya no tenes saldo disponible para invertir")
+            condicion = True
+
+    print()
+    print("Programa finalizado")
+    mostrar_portafolio(saldo, portafolio)
 
 def documento():
 
@@ -195,15 +272,13 @@ def documento():
     """ 
     pass 
                     
-#Codigo_principal
+#---------------Codigo_principal--------------------------------------------------------------
 
 def main ():
 
     nombre,edad=pide_datos_del_usuario()
-    
     #En esta funcion hacemos un desempaquetado
     print(f"El nombre del usurio es: {nombre} y su edad: {edad} años")
-
 
     matriz=crea_matriz()
     
@@ -221,8 +296,8 @@ def main ():
 
     documento()
     # con help(documento) lo podemos ver por terminal
+    interaccion_con_terminal(empresas)
 
 if __name__=="__main__":
         
     main()
-
