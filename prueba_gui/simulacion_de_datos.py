@@ -4,6 +4,15 @@ import os # Para ver el contenido del json
           # solo para este caso 
 import time
 
+# ---------------- RECURSIVIDAD APLICADA ----------------
+def contar_chistes(chistes, i=None):
+    if i is None:
+        i = len(chistes) - 1  # empieza desde el último
+    if i < 0:
+        return
+    print(f"Chiste {len(chistes) - i}: {chistes[i]}")
+    contar_chistes(chistes, i - 1)
+
 #--------------------------SECCION_00----------------------
 def pide_datos_del_usuario():
 
@@ -152,7 +161,6 @@ def interaccion_con_terminal(empresas):
     portafolio = {empresa: 0 for empresa in empresas}
     inicio = time.time()
     condicion = False
-
     while not condicion:
         if time.time() - inicio >= 600:
             print("Tiempo agotado")
@@ -297,6 +305,18 @@ def main ():
     documento()
     # con help(documento) lo podemos ver por terminal
     interaccion_con_terminal(empresas)
+
+    # Extra: chistes al final del simulador
+    chistes = [
+
+    "Por que Python no va al gimnasio? Porque ya tiene clases y objetos.",
+    "Que hace un programador cuando tiene sueno? Ejecuta un thread y se duerme.",
+    "Que hace una funcion recursiva cuando se queda sola? Se llama a si misma.",
+    "Cual es el colmo de un programador? Tener un hijo con excepcion y no poder atraparlo."
+    ]
+
+    print("\nFin del simulador. Ahora, algunos chistes:")
+    contar_chistes(chistes)
 
 if __name__=="__main__":
         
