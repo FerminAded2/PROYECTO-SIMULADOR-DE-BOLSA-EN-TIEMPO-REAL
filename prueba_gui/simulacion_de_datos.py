@@ -4,20 +4,32 @@ import os # Para ver el contenido del json
           # solo para este caso 
 
 #--------------------------SECCION_00----------------------
-def pide_datos_del_usario():
+def pide_datos_del_usuario():
+
 
     "Enpaquetado y desenpaquetado de datos de la llamda a la funcion"
 
-    nombre=input("Escriba su nombre: ")
-    edad=int(input("Ingrese su edad: ")) 
+    condicion=False
 
- #Podemos poner que la persona solo pueda ingresar un dato alfabetico 
+    while not condicion:
+        
+        nombre=input("Escriba su nombre: ")
+        try:
+            edad=int(input("Ingrese su edad: ")) 
+            condicion=True
+        
+        except ValueError:
+            print ("Por favor, ingrese un numero")
+
+    #Usamos el pricipio de “Es mejor pedir perdón que pedir permiso”
+       
+    #Podemos poner que la persona solo pueda ingresar un dato alfabetico 
     #Y hasta que eso no pase, que se siga pidiendo el dato 
 
-#----------------------------------------------------------             
-
-    return nombre,edad
-             
+    return nombre,edad 
+    # Empaquetado
+ 
+#----------------------------------------------------------                   
                
 
 def crea_matriz():
@@ -72,17 +84,36 @@ def armamos_dic(tupla):
 
     diccionario={}
 
-    for dato in tupla :
-        empresa=dato[0] #Recordemos que las empresas estan en el indice 0 de la tupla
-        precio=dato[1]
-        diccionario[empresa]=precio
+    try :
+        for dato in tupla :
+            empresa=dato[0] #Recordemos que las empresas estan en el indice 0 de la tupla
+            precio=dato[1]
+            diccionario[empresa]=precio
 
+    except IndexError:
+        print("Error: La tupla no tiene el formato esperado (empresa,precio)")
+        return None
+    
+    except Exception as e:
+        print("Error al procesar los datos:",e)
+        return None
     #---------------explicacion_en_documento----------------------------------
     #---------------  JSON ---------------------------------------------------
+    try:
+        ruta_json = os.path.join(os.path.dirname(__file__), "Promedio_de_acciones.json")
 
-    with open ("Promedio_de_acciones","w") as archivo: #write (escribir) como no existe,hay que escribir el archivo
-        json.dump(diccionario,archivo,indent=4)
-        os.startfile("Promedio_de_acciones")
+        with open (ruta_json,"w") as archivo: #write (escribir) como no existe,hay que escribir el archivo
+            json.dump(diccionario, archivo, indent=4)
+        
+        try:
+            os.startfile(ruta_json)
+
+        except Exception as e :
+            print ("No se puede abrir el archivo automaticamente:",e)
+    
+    except Exception as e:
+        print("Ocurrio un error al guardar el archivo JSON:", e)
+        return None
 
     return diccionario
 
@@ -168,9 +199,11 @@ def documento():
 
 def main ():
 
-    nombre,edad=pide_datos_del_usario()
+    nombre,edad=pide_datos_del_usuario()
+    
+    #En esta funcion hacemos un desempaquetado
+    print(f"El nombre del usurio es: {nombre} y su edad: {edad} años")
 
-    print(f"El nombre del usuario es: {nombre} y su edad: {edad} años")
 
     matriz=crea_matriz()
     
@@ -184,12 +217,12 @@ def main ():
 
     covertimos_tupla_a_diccionario=armamos_dic(convertido_a_tupla)
 
-
-
     impresion(matriz_con_datos_01,resultado)
 
     documento()
+    # con help(documento) lo podemos ver por terminal
 
-if __name__ == "__main__":
+if __name__=="__main__":
+        
     main()
 
